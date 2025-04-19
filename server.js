@@ -23,6 +23,10 @@ app.use("/api/user", userRouter)
         credentials: true
     }))
 
+app.get("/", (req, res) => {
+    res.send('api работает')
+})
+
 app.use(cookieParser())
 
 
