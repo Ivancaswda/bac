@@ -18,6 +18,9 @@ export const clerkWebhooks = async (request, response) => {
         switch (type) {
             case 'user.created': {
 
+
+                console.log('webhook receiver', request.body)
+
                 const userData = {
                     clerkId: data.id,
                     email: data.email_addresses[0].email_address,
@@ -31,7 +34,7 @@ export const clerkWebhooks = async (request, response) => {
                 break;
             }
             case "user.updated": {
-
+                console.log('webhook receiver', request.body)
                 const userData = {
                     email: data.email_addresses[0].email_address,
                     full_name: data.first_name + "" + data.last_name,
@@ -44,7 +47,7 @@ export const clerkWebhooks = async (request, response) => {
                 break;
             }
             case "user.deleted": {
-
+                console.log('webhook receiver', request.body)
                 await userModel.findOneAndDelete({clerkId: data.id})
                 response.json({})
 
